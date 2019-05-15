@@ -52,7 +52,7 @@ function test(dir, tmp, idx)
   while isempty(diff(dir, tmp))
     mutate(tmp, idx)
   end
-  _, pass = runtests(dir)
+  _, pass = runtests(tmp)
   pass && logdiff(dir, tmp)
   reset(dir, tmp)
   return !pass

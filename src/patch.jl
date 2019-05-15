@@ -34,7 +34,8 @@ function indices(dir, fs)
   for (root, dirs, files) in walkdir(dir), f in files
     endswith(f, ".jl") || continue
     p = joinpath(root, f)
-    push!(idx, [p, filesize(p), index(parsefile(p), fs)])
+    fidx = index(parsefile(p), fs)
+    isempty(fidx) || push!(idx, [p, filesize(p), fidx])
   end
   return idx
 end
