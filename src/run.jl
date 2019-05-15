@@ -1,6 +1,10 @@
 function _read(cmd)
     out = Pipe()
-    procs = Base._spawn(cmd, (devnull,out,out))
+    if VERSION > v"1.1-"
+      procs = Base._spawn(cmd, Any[devnull,out,out])
+    else
+      procs = Base._spawn(cmd, (devnull,out,out))
+    end
     close(out.in)
     return String(read(out)), success(procs)
 end
