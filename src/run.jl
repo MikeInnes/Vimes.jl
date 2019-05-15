@@ -72,14 +72,12 @@ function go(dir, ps = defaults; procs = 1)
   tmp = initialise(dir)
   idx = indices(joinpath(tmp, "src"), ps)
   checktests(dir, tmp)
-  for i = 2:procs
-    @async let tmp = initialise(dir), idx = indices(joinpath(tmp, "src"), ps)
-      while true
+  rm(tmp, recursive=true)
+  @sync for i = 1:procs
+    let tmp = initialise(dir), idx = indices(joinpath(tmp, "src"), ps)
+      @async while true
         run(test(dir, tmp, idx))
       end
     end
-  end
-  while true
-    run(test(dir, tmp, idx))
   end
 end
