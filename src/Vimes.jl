@@ -1,6 +1,6 @@
 module Vimes
 
-using MacroTools, CSTParser, StatsBase
+using MacroTools, CSTParser, StatsBase, Dates, Printf
 using MacroTools: sourcemap
 
 isdefined(CSTParser, :LocExpr) ||
