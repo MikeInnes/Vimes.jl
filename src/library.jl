@@ -12,4 +12,28 @@ function integer(x)
   nothing
 end
 
-const defaults = Any[stringindex, integer]
+function rmline(x)
+  isexpr(x, :block) || return
+  is = findall(x -> x isa Expr, x.args)
+  isempty(is) && return
+  Expr(:block, deleteat!(copy(x.args), rand(is))...)
+end
+
+function swapline(x)
+  isexpr(x, :block) || return
+  is = findall(x -> x isa Expr, x.args)
+  length(is) < 2 && return
+  i = rand(is)
+  j = rand(setdiff(is, i))
+  args = copy(x.args)
+  args[i], args[j] = args[j], args[i]
+  return Expr(:block, args...)
+end
+
+function flipcond(x)
+  isexpr(x, :if, :elseif) || return
+  Expr(x.head, Expr(:call, :!, x.args[1]), x.args[2:end]...)
+end
+
+const defaults =
+  Any[stringindex, integer, rmline, swapline, flipcond]
