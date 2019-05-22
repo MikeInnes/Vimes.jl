@@ -38,9 +38,10 @@ end
 
 diff(dir, tmp) = _read(`git diff $(joinpath(dir, "src")) $(joinpath(tmp, "src"))`)[1]
 
-function logdiff(dir, tmp)
-  mkpath(joinpath(dir, ".vimes"))
-  write(joinpath(dir, ".vimes", "$(now()).diff"), diff(dir, tmp))
+function logdiff(dir, tmp, dead = false)
+  d = !dead ? ".vimes" : ".vimes-dead"
+  mkpath(joinpath(dir, d))
+  write(joinpath(dir, d, "$(now()).diff"), diff(dir, tmp))
 end
 
 function checktests(dir, tmp)
@@ -52,22 +53,23 @@ function checktests(dir, tmp)
   end
 end
 
-function test(dir, tmp, idx)
+function test(dir, tmp, idx; dead = false)
   while isempty(diff(dir, tmp))
     mutate(tmp, idx)
   end
   _, pass = runtests(tmp)
   pass && logdiff(dir, tmp)
+  !pass && dead && logdiff(dir, tmp, true)
   reset(dir, tmp)
   return !pass
 end
 
-function go(dir, ps = defaults; procs = 1)
+function go(dir, ps = defaults; procs = 1, dead = false)
   runs, pass = 0, 0
-  function run(r)
+  function run(r, i)
     runs += 1
     pass += r
-    @info("Ran $runs tests, precision $(@sprintf("%.2f", pass/runs*100))%")
+    @info("($i) Ran $runs tests, precision $(@sprintf("%.2f", pass/runs*100))%")
   end
   tmp = initialise(dir)
   idx = indices(joinpath(tmp, "src"), ps)
@@ -76,7 +78,7 @@ function go(dir, ps = defaults; procs = 1)
   @sync for i = 1:procs
     let tmp = initialise(dir), idx = indices(joinpath(tmp, "src"), ps)
       @async while true
-        run(test(dir, tmp, idx))
+        run(test(dir, tmp, idx, dead = dead), i)
       end
     end
   end
