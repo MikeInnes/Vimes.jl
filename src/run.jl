@@ -18,7 +18,7 @@ function initialise(dir)
     ispath(joinpath(dir, path)) &&
       cp(joinpath(dir, path), joinpath(tmp, path))
   end
-  atexit(() -> rm(tmp, recursive=true))
+  atexit(() -> isdir(tmp) && rm(tmp, recursive=true))
   return tmp
 end
 
