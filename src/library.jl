@@ -7,8 +7,9 @@ function stringindex(x)
 end
 
 function integer(x)
-  x isa Number && return rand(typeof(x))
-  return
+  x isa Integer && !(x isa Bool) ? rand(typeof(x)) :
+  x isa AbstractFloat ? rand(typeof(x)) * x :
+  nothing
 end
 
 const defaults = Any[stringindex, integer]
