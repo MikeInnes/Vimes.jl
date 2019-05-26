@@ -64,7 +64,7 @@ function test(dir, tmp, idx; dead = false)
   return !pass
 end
 
-function go(dir, ps = defaults; procs = 1, dead = false)
+function go(dir, ps = defaults; procs = 1, dead = false, tests = typemax(Int))
   runs, pass = 0, 0
   function run(r, i)
     runs += 1
@@ -77,7 +77,7 @@ function go(dir, ps = defaults; procs = 1, dead = false)
   rm(tmp, recursive=true)
   @sync for i = 1:procs
     let tmp = initialise(dir), idx = indices(joinpath(tmp, "src"), ps)
-      @async while true
+      @async while runs < tests
         run(test(dir, tmp, idx, dead = dead), i)
       end
     end
