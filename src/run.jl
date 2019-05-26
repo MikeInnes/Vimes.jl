@@ -14,9 +14,10 @@ function initialise(dir)
     error("No Julia project found at $dir")
   tmp = joinpath(tempdir(), "vimes-$(rand(UInt64))")
   mkdir(tmp)
-  for path in ["Project.toml", "Manifest.toml", "src", "test", "deps"]
-    ispath(joinpath(dir, path)) &&
-      cp(joinpath(dir, path), joinpath(tmp, path))
+  for path in readdir(dir)
+      if !startswith(path, “.”)
+          cp(joinpath(dir, path), joinpath(tmp, path))
+      end
   end
   atexit(() -> isdir(tmp) && rm(tmp, recursive=true))
   return tmp
