@@ -22,7 +22,9 @@ julia> using Vimes; Vimes.go("../JSON.jl", procs=4) # run 4 tests in parallel
 [ Info: (2) Ran 35 tests, precision 97.14%
 ```
 
-Vimes reports the percentage of runs where the tests failed as the precision of the test suite. In the project folder (here `../JSON.jl`), a `.vimes` folder will appear with a `.diff` file for every patch found, like this:
+Vimes reports the percentage of runs where the tests failed as the precision of the test suite (i.e. 100% is the best possible precision).
+
+In the project folder (here `../JSON.jl`), a `.vimes` folder will appear with a `.diff` file for every patch found, like this:
 
 ```diff
 @@ -19,7 +19,7 @@ end
