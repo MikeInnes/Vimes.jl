@@ -65,7 +65,7 @@ function test(dir, tmp, idx; dead = false)
   return !pass
 end
 
-function go(dir, ps = defaults; procs = 1, dead = false, tests = typemax(Int))::Tuple{Int, Int}
+function go(dir, ps = defaults; procs = 1, dead = false, tests = typemax(Int))::Int
   runs, pass = 0, 0
   function run(r, i)
     runs += 1
@@ -83,5 +83,5 @@ function go(dir, ps = defaults; procs = 1, dead = false, tests = typemax(Int))::
       end
     end
   end
-  return (runs, pass)
+  return pass
 end
