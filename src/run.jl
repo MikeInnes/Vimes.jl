@@ -15,7 +15,7 @@ function initialise(dir)
   tmp = joinpath(tempdir(), "vimes-$(rand(UInt64))")
   mkdir(tmp)
   for path in readdir(dir)
-      if !startswith(path, “.”)
+      if !startswith(path, ".")
           cp(joinpath(dir, path), joinpath(tmp, path))
       end
   end
