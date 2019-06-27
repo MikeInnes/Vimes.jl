@@ -1,0 +1,14 @@
+julia:
+    - 0.7
+    - 1.0
+    - 1.1
+
+language: julia
+
+matrix:
+    allow_failures:
+        - julia: nightly
+
+os:
+    - linux
+    - osx
