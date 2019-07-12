@@ -1,15 +1,8 @@
 module Vimes
 
-using CSTParser
-
-isdefined(CSTParser, :LocExpr) ||
-  error("""
-  Vimes depends on a fork of CSTParser:
-  ] add https://github.com/MikeInnes/CSTParser.jl#location
-  """)
-
-using MacroTools, CSTParser, StatsBase, Dates, Printf
+using MacroTools, StatsBase, Dates, Printf
 using MacroTools: sourcemap
+using MacroTools.CSTParser
 
 include("library.jl")
 include("patch.jl")
