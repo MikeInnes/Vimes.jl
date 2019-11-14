@@ -11,7 +11,7 @@ StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 
 [compat]
 julia = "≥ 1.0"
-MacroTools = "0.5.1"
+MacroTools = "=0.5.1"
 
 [extras]
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
