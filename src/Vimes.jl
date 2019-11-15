@@ -1,8 +1,13 @@
 module Vimes
 
-using MacroTools, StatsBase, Dates, Printf
-using MacroTools: sourcemap
-using MacroTools.CSTParser
+using Dates
+using MacroTools
+using Printf
+using SourceWalk
+using StatsBase
+
+using SourceWalk.CSTParser
+using SourceWalk: sourcemap
 
 include("library.jl")
 include("patch.jl")
