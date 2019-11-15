@@ -11,9 +11,9 @@ SourceWalk = "2987fe4f-acca-4bd1-87ee-98b3d562f1a1"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 
 [compat]
-MacroTools = "0.5.2"
-SourceWalk = "0.1.1"
-StatsBase = "0.32"
+MacroTools = "0.0-0.5"
+SourceWalk = "0.1"
+StatsBase = "0.0-0.32"
 julia = "1"
 
 [extras]
