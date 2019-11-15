@@ -1,6 +1,7 @@
 # Vimes
 
 [![Build Status](https://travis-ci.org/MikeInnes/Vimes.jl.svg?branch=master)](https://travis-ci.org/MikeInnes/Vimes.jl)
+[![Codecov](https://codecov.io/gh/MikeInnes/Vimes.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/MikeInnes/Vimes.jl)
 
 > ‘Quis custodiet ipsos custodies? Your grace.’ \
 > ‘I know that one,’ said Vimes. 'Who watches the watchmen? Me, Mr Pessimal.’ \
