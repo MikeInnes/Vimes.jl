@@ -1,7 +1,7 @@
 name = "Vimes"
 uuid = "85f4b15a-ac2e-11e8-1659-abc63ef75ab0"
 authors = ["Mike J Innes <mike.j.innes@gmail.com>"]
-version = "0.1.0"
+version = "0.1.1-DEV"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
