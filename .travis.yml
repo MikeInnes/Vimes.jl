@@ -1,3 +1,7 @@
+env:
+  global:
+    - JULIA_DEBUG="all"
+
 julia:
     - "1.0"
     - "1.2"
